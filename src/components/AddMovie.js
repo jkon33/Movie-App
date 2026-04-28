@@ -7,7 +7,8 @@ const AddMovie = ({ addMovie }) => {
     title: '',
     description: '',
     posterURL: '',
-    rating: 1
+    rating: 1,
+    trailerLink: ''
   });
 
   const handleChange = (e) => {
@@ -20,17 +21,18 @@ const AddMovie = ({ addMovie }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newMovie.title && newMovie.description && newMovie.posterURL) {
+    if (newMovie.title && newMovie.description && newMovie.posterURL && newMovie.trailerLink) {
       addMovie(newMovie);
       setNewMovie({
         title: '',
         description: '',
         posterURL: '',
-        rating: 1
+        rating: 1,
+        trailerLink: ''
       });
       setShowForm(false);
     } else {
-      alert('Please fill in all fields!');
+      alert('Please fill in all fields including trailer link!');
     }
   };
 
@@ -66,6 +68,14 @@ const AddMovie = ({ addMovie }) => {
             name="posterURL"
             placeholder="Poster URL"
             value={newMovie.posterURL}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="trailerLink"
+            placeholder="YouTube Embed Link (e.g., https://www.youtube.com/embed/VIDEO_ID)"
+            value={newMovie.trailerLink}
             onChange={handleChange}
             required
           />
